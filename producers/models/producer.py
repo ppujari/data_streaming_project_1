@@ -41,10 +41,8 @@ class Producer:
             # TODO
             # TODO
             # TODO
-            #"bootstrap.servers": ",".join(["PLAINTEXT://localhost:9092", "PLAINTEXT://localhost:9093", "PLAINTEXT://localhost:9094"]),
-            "bootstrap.servers": ",".join(["PLAINTEXT://kafka0:19092","PLAINTEXT://kafka0:9092","PLAINTEXT://kafka1:9093","PLAINTEXT://kafka2:9094"]),
-            #"schema.registry.url": "http://localhost:8081"
-            "schema.registry.url": "http://schema-registry:8081"
+            "bootstrap.servers": ",".join(["PLAINTEXT://localhost:9092", "PLAINTEXT://localhost:9093", "PLAINTEXT://localhost:9094"]),
+            "schema.registry.url": "http://localhost:8081"
         }
 
         # If the topic does not already exist, try to create it
@@ -62,7 +60,7 @@ class Producer:
     def check_topic_exists(self, client, topic_name):
         """Checks if the given topic exists"""
         # Request metadata from cluster with max response_time=5
-        topic_metadata = client.list_topics(timeout=5)
+        topic_metadata = client.list_topics(timeout=60)
         topics = topic_metadata.topics
         print(topics)
         return topic_name in topics

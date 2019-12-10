@@ -1,6 +1,7 @@
 """Methods pertaining to weather data"""
 from enum import IntEnum
 import json
+import time
 import logging
 from pathlib import Path
 import random

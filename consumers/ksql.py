@@ -45,6 +45,7 @@ def execute_statement():
     if topic_check.topic_exists("TURNSTILE_SUMMARY") is True:
         return
 
+    print("executing ksql statement...", KSQL_STATEMENT)
     logging.debug("executing ksql statement...")
 
     resp = requests.post(

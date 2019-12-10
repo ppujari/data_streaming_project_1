@@ -41,9 +41,9 @@ class KafkaConsumer:
                 #
                 # TODO - done
                 #
-            "bootstrap.servers": BROKER_URL,
-            "group.id": f'{topic_name_pattern}',
-            "default.topic.config": {"auto.offset.reset": "earliest"}
+            "bootstrap.servers": ",".join(["PLAINTEXT://localhost:9092"]),
+            "group.id": f"{topic_name_pattern}",
+            "default.topic.config": {"auto.offset.reset": "earliest"},
         }
 
         # TODO: Create the Consumer, using the appropriate type.

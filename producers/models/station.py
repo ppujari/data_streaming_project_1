@@ -39,7 +39,7 @@ class Station(Producer):
         #
         #topic_name = f"{station_name}" # TODO: Come up with a better topic name
         super().__init__(
-            topic_name="org.chicago.cta.station.arrivals.v1",
+            topic_name="org.chicago.cta.station.v1",
             key_schema=Station.key_schema,
             value_schema=Station.value_schema, # TODO: Uncomment once schema is defined
             num_partitions=5,
@@ -64,6 +64,8 @@ class Station(Producer):
         #
         #
         logger.info("arrival kafka integration started")
+        print("prev_direction", prev_direction)
+        print(self.topic_name)
         self.producer.produce(
             topic=self.topic_name,
             key={"timestamp": self.time_millis()},
@@ -74,7 +76,7 @@ class Station(Producer):
                "line": self.color.name,
                "train_status": train.status.name,
                "prev_station_id": prev_station_id,
-               "prev_direction": prev_direction,
+               "prev_direction": prev_direction
            },
         )
 
